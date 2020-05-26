@@ -1,6 +1,10 @@
 sudo: required
 services:
     - docker
+env:
+    global:
+        - SHA=$(git rev-parse HEAD)
+        - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
     - openssl aes-256-cbc -K $encrypted_e2c2b3d95a8a_key -iv $encrypted_e2c2b3d95a8a_iv -in service-account-pk.json.enc -out service-account-pk.json -d
     - curl https://sdk.cloud.google.com | bash > /dev/null;
@@ -15,3 +19,9 @@ before_install:
 
 script:
     - docker run -e CI=true smurahy/react-test npm test
+
+deploy:
+    provider: script
+    script: bash ./depoy.sh
+    on:
+        branch: master
