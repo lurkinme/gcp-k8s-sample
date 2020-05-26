@@ -1,4 +1,3 @@
-git clean -f
 docker build -t smurahy/docker-fib-client:latest -t smurahy/docker-fib-client:$SHA -f ./client/Dockerfile ./client
 docker build -t smurahy/docker-fib-server:latest -t smurahy/docker-fib-server:$SHA -f ./server/Dockerfile ./server
 docker build -t smurahy/docker-fib-worker:latest -t smurahy/docker-fib-worker:$SHA -f ./worker/Dockerfile ./worker

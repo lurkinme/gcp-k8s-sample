@@ -16,10 +16,10 @@ before_install:
     - gcloud container clusters get-credentials multi-cluster
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker build -t smurahy/react-test -f ./client/Dockerfile.dev ./client
-
 script:
     - docker run -e CI=true smurahy/react-test npm test
-
+before_deploy:
+    - git clean -f
 deploy:
     provider: script
     script: bash ./depoy.sh
