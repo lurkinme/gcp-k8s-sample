@@ -12,8 +12,8 @@ before_install:
     - gcloud components update kubectl
     - gcloud auth activate-service-account --key-file service-account-pk.json
     - gcloud config set project fib-k8s-278414
-    - glcoud config set compute/zone europe-west2-a
-    - gloud container clusters get-credentials multi-cluster
+    - gcloud config set compute/zone europe-west2-a
+    - gcloud container clusters get-credentials multi-cluster
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker build -t smurahy/react-test -f ./client/Dockerfile.dev ./client
 
