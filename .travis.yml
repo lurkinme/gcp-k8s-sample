@@ -19,9 +19,9 @@ before_install:
 script:
     - docker run -e CI=true smurahy/react-test npm test
 before_deploy:
-    - git clean -f
     - chmod +x ./deploy.sh
 deploy:
+    skip_cleanup: true
     provider: script
     script: bash ./depoy.sh
     on:
